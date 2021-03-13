@@ -97,6 +97,12 @@ struct downstream_intf_list {
 isc_boolean_t use_if_id = ISC_FALSE;
 #endif
 
+/*
+ * If not set, kernel chooses what the src ip is.
+ * If set, uses "from" interface IP for packet Tx.
+ */
+extern int use_src_intf_ip_for_tx = 0;
+
 	/* Maximum size of a packet with agent options added. */
 int dhcp_max_agent_option_packet_length = DHCP_MTU_MIN;
 
@@ -431,6 +437,8 @@ main(int argc, char **argv) {
 #endif
 		} else if (!strcmp(argv[i], "-d")) {
 			/* no_daemon = 1; */
+		} else if (!strcmp(argv[i], "-si")) {
+			use_src_intf_ip_for_tx = 1;
 		} else if (!strcmp(argv[i], "-q")) {
 			quiet = 1;
 			quiet_interface_discovery = 1;

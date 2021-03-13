@@ -2660,6 +2660,7 @@ ssize_t send_fallback6(struct interface_info *, struct packet *,
 #endif
 
 #ifdef USE_SOCKET_SEND
+extern int use_src_intf_ip_for_tx;
 void if_reinitialize_send (struct interface_info *);
 void if_register_send (struct interface_info *);
 void if_deregister_send (struct interface_info *);
